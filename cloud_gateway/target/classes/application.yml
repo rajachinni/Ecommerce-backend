@@ -1,0 +1,48 @@
+server:
+    port: 8082
+
+
+spring:
+    cloud:
+        gateway:
+            routes:
+                - id: SearchModule
+                  uri: http://localhost:8085/
+                  predicates:
+                  - Path=/search/**
+
+                - id: LogInModule
+                  uri: http://localhost:8087/
+                  predicates:
+                  - Path=/customerUI/**
+
+                - id: MerchantModule
+                  uri: http://localhost:8089/
+                  predicates:
+                  - Path=/merchant/**
+
+                - id: InventoryModule
+                  uri: http://localhost:8091/
+                  predicates:
+                  - Path=/Inventory/**
+
+                - id: ProductModule
+                  uri: http://localhost:8093/
+                  predicates:
+                  - Path=/product/**
+
+                - id: Order_cartModule
+                  uri: http://localhost:8095/
+                  predicates:
+                  - Path=/order/**
+
+                - id: RatingModule
+                  uri: http://localhost:8097/
+                  predicates:
+                  - Path=/ratings/**
+
+                - id: attributeservice
+                  uri: http://localhost:8099/
+                  predicates:
+                  - Path=/attribute/**
+
