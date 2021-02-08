@@ -1,0 +1,110 @@
+
+1. search service:
+        
+    requests:
+
+
+    1.   url     :  /search/searching/{attribute}
+                  
+                  {attribute} -> string
+
+         disc    : returns array of product objects and input will be   
+                   sepreated by (;) 
+
+
+         output-example:
+         [
+           {
+             "productId": "a1",
+             "category": "hello",
+             "stock": 5,
+             "attribute": "okay"
+           }
+        ]
+
+
+2.LoginApi:
+
+   1.url   :  /customerUI/{email}
+              
+              {email}---->STRING
+
+     type  :  Get
+
+     disc  :   get the cutomer details object based on the given email i.e customer id 
+  
+     Method: public CustomerDetails getCustomer(@PathVariable("get") String email)
+
+
+     example: /customerUI/a@xyz.com
+
+     output :  {
+
+               "email": 
+               "password":
+               "name":
+               "address":
+               "phone":
+              }
+
+    2.url   :  /customerUI/createCustomer
+      
+      type  :   post
+
+      disc  :   to save the customer deatils
+      
+     Method:   @PostMapping("/createCustomer")
+          public String createCustomer(@RequestBody CustomerDetails customerDetails )
+
+      input :     {
+
+               "email": 
+               "password":
+               "name":
+               "address":
+               "phone":
+              }
+
+      output  : get the cutomer details in the form of a string
+
+    3. url  : /customerUI/updateCustomer/{id}
+
+              {id}---> String (value is email)
+
+       type : PUT
+
+       method : public String updateCustomerDetails(@PathVariable(value = "id") String email,
+                                                             @RequestBody CustomerDetails customerDetails)
+
+       ds :  to update the concerned object details
+
+       input: id , whole object of the customer details 
+
+               {
+
+               "email": 
+               "password":
+               "name":
+               "address":
+               "phone":
+              }
+
+    4.delete customer details
+      
+     Url : customerUI/deleteCustomer/{delId}
+
+     Method:to delete based on id
+
+            @Deletemapping
+            public String deleteCustomer(@PathVariable(value = "del") String Id
+
+     
+
+
+    
+
+                                         
+                            
+
+
+

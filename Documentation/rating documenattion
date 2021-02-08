@@ -1,0 +1,73 @@
+Methods in the api:
+
+
+  1) Get rating review for a particular Product (Get Method)
+
+
+   method call has path variable of product id
+
+    url:-  base url/ratings/get/{the product id}
+
+
+    Return Type: a list  of type rating collection
+                List<RatingCollection>
+
+         RatingCollection Object sample
+         {
+              "rating": 4.5,
+              "customerId":"abc@xyz.com",
+              "review":"very Good"
+         }
+
+   Method Declaration:
+
+         @GetMapping(value = ("/get/{id}"))
+             List<RatingCollection> getRatingById(@PathVariable("id") String id)
+             {
+                 return ratingService.getRating(id);
+             }
+
+
+
+ 2) Set rating review for a particular Product (Post Method)
+
+        method call has a path variable of product id along with a body of a RatingCollection Object
+
+        url:- base url/ratings/save/{product id of the product}
+
+
+        method:
+                **Must have a url body of with a object of Rating Collection
+
+                 RatingCollection Object sample
+                    {
+                         "rating": 4.5,
+                         "customerId":"abc@xyz.com",
+                         "review":"very Good"
+                    }
+         Return type is a String  with saved if success or error  if failure
+
+
+
+         Method Declaration:
+
+              @PostMapping(value ="/save/{id}")
+                  String setRatingById(@PathVariable("id") String id,@RequestBody RatingCollection ratingCollection)
+                  {
+                      return ratingService.setRating(id,ratingCollection);
+                  }
+
+
+
+ 3)setAvgRatingById:
+
+      url:/ratings/setavg/{id}
+
+      method:
+
+      @PostMapping(value = "/setavg/{id}")
+      String setAvgRatingById(@PathVariable("id") String id, double avg)
+
+      input:  has to have id ,avg
+
+

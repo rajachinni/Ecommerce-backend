@@ -1,0 +1,100 @@
+base-URl: localhost:8083/Inventory
+server-port:8083
+
+1.  type       :post mapping
+    url        :http://localhost:8083/Inventory/save
+    method     :Inventory save(@RequestBody Inventory inventory)
+    functional :to save into the inventory
+    input:
+    {
+        "productId":"1242",
+        "merchantId":"6789",
+        "price":500,
+        "quantity":100
+    }
+
+    saves as:
+    {
+        "id": 3,--->generated primary key
+        "productId": "1242",
+        "merchantId": "6767",
+        "price": 45.0,
+        "quantity": 99
+    }
+
+2.  type       :post mapping
+    url        :http://localhost:8083/Inventory/price/{productId}/{merchantId}/{price}
+    method     :void setPrice(@PathVariable("productId")String productId,@PathVariable("merchantId")String merchantId,@PathVariable("price")double price){
+
+
+    functional :to change the price based on the given productId,merchantId,new_price
+
+    input - example:http://localhost:8083/Inventory/price/1242/6789/700
+
+3.  type       :post mapping
+    url        :http://localhost:8083/Inventory/quantity/{productId}/{merchantId}/{quantity}
+    method     :void setPrice(@PathVariable("productId")String productId,@PathVariable("merchantId")String merchantId,@PathVariable("quantity")int quantity){
+
+
+    functional :to change the quantity based on the given produd,merchantId,new_quantity
+
+    input-example:http://localhost:8083/Inventory/quantity/1242/6789/80
+
+
+4.  type       :Get-mapping
+    url        :http://localhost:8083/Inventory/findProduct/{productId}
+    method     :List<Inventory> findProductById(@PathVariable String productId)
+
+    functional: to get the details of merchants along with all the concerned prices
+
+    input-example: http://localhost:8083/Inventory/findproduct/1242
+
+    output:
+
+    [
+    {
+        "id": 1,
+        "productId": "1242",
+        "merchantId": "6789",
+        "price": 500.0,
+        "quantity": 10
+    },
+    {
+        "id": 2,
+        "productId": "1242",
+        "merchantId": "6756",
+        "price": 50.0,
+        "quantity": 10
+    },
+    {
+        "id": 3,
+        "productId": "1242",
+        "merchantId": "6767",
+        "price": 45.0,
+        "quantity": 99
+    }
+    ]
+
+5.  type       :Get-Mapping
+    url        :http://localhost:8083/Inventory/allStock/{productId}
+    method     :int  getstock(@PathVariable("productId")String productId)
+
+    functional :to get the overall stock value based on the  given productId
+
+    input-example : http://localhost:8083/Inventory/allStock/1242
+
+    output :119
+
+
+
+6.findProducts
+
+   Functionality: to get the list of all the products a merchant sells
+
+   Url:/findProducts/{merchantId}
+
+   Method:
+
+        @GetMapping(value="/findProducts/{merchantId}")
+        List<Inventory> findByMerchantId(@PathVariable("merchantId")String merchantId)
+

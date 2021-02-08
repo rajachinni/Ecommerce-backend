@@ -1,0 +1,132 @@
+order-entity documentation:
+
+private String orderId;
+    private String customerEmail;
+    private Date date;
+    private String address;
+    private List<ProductEntity> productEntities = new ArrayList<>();
+
+
+0.save method:
+
+   url:/saveOrder
+
+   method:
+          @PostMapping(value = "/saveOrder")
+              void saveOrder(@RequestBody OrderEntity orderEntity)
+          
+
+
+
+
+
+
+1.GetOrder method:
+
+   url:/getOrder/{customerEmail}
+   
+   method:
+   
+   @GetMapping(value = "/getOrder/{customerEmail}")
+   List<OrderEntity> getOrder(@PathVariable("customerEmail") String customerEmail)
+   
+   discription:
+    
+   get the order of the customer email
+   
+   
+   
+   example:
+   
+   
+    OrderEntity Object sample{
+            	orderId :A001,
+            	customerEmail : 
+            	date : "10/1/2021"
+            	address: My Address
+            	productEntities\'94: [
+            	                     {
+                                        productId : prod1 ,
+                                        quantity:2,
+                                        merchantId:merc1,
+                                                 
+                                     }
+                                                  
+                                      ]
+            }
+   
+   
+   
+   
+   
+2.GetCart method:
+
+  url: /getCart/{customerEmail}
+  
+  method:
+  @GetMapping(value = "/getCart/{customerEmail}")
+  CartEntity getCart(@PathVariable("customerEmail") String customerEmail)
+  
+  discription:
+  
+   get the cart of customer
+   
+3.updateCart method:
+
+  url:/updateCart
+  
+  method:
+  
+   @PutMapping(value = "/updateCart")
+      void updateCart(@RequestBody CartEntity cart){
+          orderService.updateCart(cart);
+      }
+  
+   discription:
+   
+     update the cart
+     
+4. save cart:
+
+   url:/cart
+   
+   method:  @PostMapping(value = "/cart")
+              void saveCart(@RequestBody CartEntity cart)
+   
+   
+   discription:
+   
+       to save the cart
+     
+     
+  5.delete-cart:
+  
+    url:/deleteCart/{customer-email}
+    
+    method: @DeleteMapping(value = "/deleteCart/{customerEmail}")
+                void deleteCart(@PathVariable("customerEmail") String customerEmail)
+                
+                
+    discription:
+    
+     to delete the cart
+     
+     
+  6.send-email:
+        
+     url:/sendMail/{email}
+     
+     method:
+     
+     @GetMapping(value="/sendMail/{email}")
+             String sendMail(@PathVariable("email")String email)
+             
+     discription:
+     
+      to send the mail to cutomer based on the order
+      
+      
+      returns success
+      
+    
+      
