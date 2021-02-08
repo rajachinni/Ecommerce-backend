@@ -1,0 +1,89 @@
+1. Post-register activity:(post)
+
+   functionality: to save the details during new merchant registration
+
+     url:http://localhost:8082/merchant/save
+
+     method-structure:
+
+      @PostMapping(value="/save")
+         public Merchant save(@RequestBody Merchant merchant)
+
+     input-json:
+    {
+    "merchantId": "ani",
+    "merchantName":"anilu",
+    "password": "123456",
+    "gstPin": null,
+    "rating": 2.3
+    }
+
+
+2. get_merchant details activty:(get)
+
+    functionality: to send the details of merchant using merchant id
+
+    url:http://localhost:8082/merchant/ani
+
+
+    method-structure:
+
+      @GetMapping(value="/{merchantId}")
+         public Merchant findById(@PathVariable("merchantId")String merchantId){
+
+    input: {merchantId}
+    output-json:
+    {
+           "merchantId": "ani",
+            "merchantName": "anilu",
+            "password": "123456",
+            "gstPin": null,
+            "rating": 2.3,
+            "orderId": []
+       }
+
+
+3.get_orders details activty:
+
+  functionality:to get orders of the merchant using merchant id
+
+  url:http://localhost:8082/merchant/orders/ani
+
+
+  methods:
+
+      @GetMapping(value="/orders/{merchantId}")
+          public List<String> findOrders(@PathVariable("merchantId") String merchantId)
+
+  output-json:
+  [](so far no orders)
+
+
+4. addMerchantOrder
+
+   functionality:to make order-id of a product to add into corresponding merchants orderid list
+
+   url:http://localhost:8082/merchant/addMerchantOrder/ani/1234s
+
+   method:   @PostMapping(value="/addMerchantOrder/{merchantId}/{orderId}")
+                public void  addMerchantOrder(@PathVariable("merchantId")String merchantId,@PathVariable("orderId")String orderId)
+
+   output: no-output
+
+
+5.findMerchant
+
+   functionality: to make it returns the string containing both name and rating
+
+    url:/findMerchant/{merchantId}
+
+        {merchantId}--->String
+
+    method:@GetMapping(value="/findMerchant/{merchantId}")
+               public String findMerchant(@PathVariable("merchantId")String merchantId)
+
+    input: findMerchant/anil@gmail.com
+
+    output:
+            anilu;4.5
+
