@@ -1,0 +1,25 @@
+/search
+
+        /POST/search/add
+        http://localhost:8080/search/add
+        Adds product to the database
+        Returns Search object
+        {
+        "productId": "a1",
+        "category": "hello",
+        "stock": 5,
+        "attribute": "okay"
+        }
+
+        /GET/searching/{attribute}
+        http://localhost:8080/searching/“attribute”
+        Searches in all fields
+        Returns Search[]
+        [
+        {
+        "productId": "a1",
+        "category": "hello",
+        "stock": 5,
+        "attribute": "okay"
+        }
+        ]
